@@ -9,6 +9,9 @@ create database petroldb;
 use petroldb;
 create table newPetrol(distributor_id VARCHAR(100), distributor_name VARCHAR(100), amt_int VARCHAR(100), amy_out VARCHAR(100), vol_in INT, vol_out INT, year INT);
 
+sqoop export --connect jdbc:mysql://localhost/petroldb --username root -password cloudera --table newPetrol --export-dir /user/hive/warehouse/petrol -m 1
+
+
 select distributor_name, sum(vol_out) from newPetrol where distributor_name='shell';
 
 select distributor_name,count(distributor_name) from newPetrol where distributor_name= 'reliance';
